@@ -22,4 +22,9 @@ ActiveRecord::Schema.define(version: 20160301043129) do
     t.string "name", null: false
     t.string "description", length: 4000
   end
+
+  create_table "things", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "full_text", length: 4000
+  end
 end

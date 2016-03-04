@@ -4,15 +4,11 @@ require 'active_record'
 
 module Breakable
   class ActiveRecord::Base
-    def self.is_breakable bdy
-      #if body
-      # TODO
-        class << self; attr_accessor :bdy end
-        @bdy = bdy
-        def full_text
-          @full_text ||= method(self.bdy).call
-        end
-      #end
+    def self.is_breakable bdy=nil
+      @bdy = bdy
+      def self.bdy
+        @bdy
+      end
       include Breakable
     end
   end
@@ -21,6 +17,10 @@ module Breakable
     STOP = "<!--break-->".freeze
 
     included do
+      def full_text
+        @full_text ||= ((self.class.bdy && method(self.class.bdy).call) || super)
+      end
+
       def small_text
         @small_text ||= introduction(300)
       end
