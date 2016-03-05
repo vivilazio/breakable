@@ -21,12 +21,12 @@ module Breakable
         @full_text ||= ((self.class.bdy && method(self.class.bdy).call) || super)
       end
 
-      def small_text
-        @small_text ||= introduction(300)
+      def teaser
+        @teaser ||= introduction(300)
       end
 
-      def medium_text
-        @medium_text ||= introduction(500)
+      def long_teaser
+        @long_teaser ||= introduction(500)
       end
 
       protected
