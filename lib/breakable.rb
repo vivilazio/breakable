@@ -18,7 +18,11 @@ module Breakable
 
     included do
       def full_text
-        @full_text ||= ((self.class.bdy && method(self.class.bdy).call) || super)
+        if self.class.bdy && respond_to?(self.class.bdy)
+          @full_text ||= method(self.class.bdy).call
+        else
+          super
+        end
       end
 
       def teaser

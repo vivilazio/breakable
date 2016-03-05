@@ -10,16 +10,16 @@ class BreakableTest < ActiveSupport::TestCase
     gift = gifts(:prova)
     thing = things(:prova)
 
-    assert article.full_text
-    assert(article.medium_text.length == 500, article.medium_text.length)
-    assert(article.small_text.length == 300, article.small_text.length)
+    assert article.respond_to?(:full_text)
+    assert(article.long_teaser.length == 500, article.long_teaser.length)
+    assert(article.teaser.length == 300, article.teaser.length)
 
-    assert gift.full_text
-    assert(gift.medium_text.length == 500, gift.medium_text.length)
-    assert(gift.small_text.length == 300, gift.small_text.length)
+    assert gift.respond_to?(:full_text)
+    assert(gift.long_teaser.length == 0, gift.long_teaser.length)
+    assert(gift.teaser.length == 0, gift.teaser.length)
 
-    assert thing.full_text
-    assert(thing.medium_text.length == 500, thing.medium_text.length)
-    assert(thing.small_text.length == 300, thing.small_text.length)
+    assert thing.respond_to?(:full_text)
+    assert(thing.long_teaser.length == 500, thing.long_teaser.length)
+    assert(thing.teaser.length == 300, thing.teaser.length)
   end
 end
