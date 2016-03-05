@@ -22,4 +22,14 @@ class BreakableTest < ActiveSupport::TestCase
     assert(thing.long_teaser.length == 500, thing.long_teaser.length)
     assert(thing.teaser.length == 300, thing.teaser.length)
   end
+
+  def test_setter_and_getter
+    article = articles(:prova)
+
+    article.long_teaser = "That's a long teaser"
+    article.teaser = "That's a teaser"
+
+    assert article.long_teaser == "That's a long teaser"
+    assert article.teaser == "That's a teaser"
+  end
 end

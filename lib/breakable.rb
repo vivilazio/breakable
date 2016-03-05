@@ -17,6 +17,7 @@ module Breakable
     STOP = "<!--break-->".freeze
 
     included do
+      attr_writer :teaser, :long_teaser
       def full_text
         if self.class.bdy && respond_to?(self.class.bdy)
           @full_text ||= method(self.class.bdy).call
